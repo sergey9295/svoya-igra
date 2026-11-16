@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Своя игра</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="bg"></div>
+
+  <!-- Загрузка / выбор папки -->
+  <section id="screen-load" class="screen center active">
+    <div class="logo">СВОЯ ИГРА</div>
+    <div id="load-msg" class="subtitle">Загрузка…</div>
+    <div id="picker-box" class="panel" hidden>
+      <p>Игра открыта как файл, и браузер не даёт ей самой прочитать вопросы.</p>
+      <p>Либо закройте вкладку и запустите <b>«Запустить игру.bat»</b>,<br>либо выберите папку игры (ту, где лежат <b>deck</b>, <b>players</b> и <b>sounds</b>):</p>
+      <label class="btn big">Выбрать папку игры<input type="file" id="picker" webkitdirectory multiple hidden></label>
+      <p id="picker-error" class="error" hidden></p>
+    </div>
+  </section>
+
+  <!-- Заставка перед стартом -->
+  <section id="screen-splash" class="screen center">
+    <div class="rays"></div>
+    <div class="logo big">СВОЯ ИГРА</div>
+    <div id="deck-title" class="subtitle"></div>
+    <div id="deck-info" class="deck-info"></div>
+    <div class="splash-buttons">
+      <button id="btn-continue" class="btn big gold" hidden>Продолжить игру</button>
+      <button id="btn-new" class="btn big">Новая игра</button>
+    </div>
+    <details id="warnings" class="panel warnings" hidden>
+      <summary></summary>
+      <ul></ul>
+    </details>
+  </section>
+
+  <!-- Интро -->
+  <section id="screen-intro" class="screen center clickable">
+    <div class="rays spin"></div>
+    <div class="logo huge intro-logo">СВОЯ ИГРА</div>
+    <div class="hint">щёлкните, чтобы продолжить</div>
+  </section>
+
+  <!-- Представление игрока -->
+  <section id="screen-player" class="screen center clickable">
+    <div class="rays spin"></div>
+    <div class="player-intro">
+      <div class="pi-label"></div>
+      <div class="pi-photo"><img alt=""></div>
+      <div class="pi-name"></div>
+    </div>
+  </section>
+
+  <!-- Темы раунда -->
+  <section id="screen-themes" class="screen clickable">
+    <div class="rays"></div>
+    <div class="themes-title"></div>
+    <div class="themes-list"></div>
+    <div class="hint">щёлкните, чтобы продолжить</div>
+  </section>
+
+  <!-- Игровой экран -->
+  <section id="screen-game" class="screen">
+    <aside id="players"></aside>
+    <main id="stage">
+      <div id="round-label"></div>
+      <div id="board-wrap">
+        <div id="board"></div>
+        <div id="final-panel" hidden></div>
+        <div id="qpanel" hidden></div>
+      </div>
+    </main>
+  </section>
+
+  <!-- Итоги -->
+  <section id="screen-winner" class="screen center clickable">
+    <div class="rays spin"></div>
+    <div class="winner"></div>
+  </section>
+
+  <!-- Панель ведущего -->
+  <div id="toolbar" hidden>
+    <button data-act="undo" title="Отменить последнее изменение счёта">↶</button>
+    <button data-act="skip" title="Завершить раунд досрочно">⏭</button>
+    <button data-act="mute" title="Звук вкл/выкл">🔊</button>
+    <button data-act="full" title="Полный экран (F)">⛶</button>
+    <button data-act="restart" title="Новая игра">⟲</button>
+    <button data-act="help" title="Подсказка ведущему">?</button>
+  </div>
+  <div id="help" class="panel" hidden>
+    <h3>Подсказка ведущему</h3>
+    <ul>
+      <li>Щёлкните по <b>счёту</b> игрока, чтобы исправить его вручную; по <b>фото</b> — сделать игрока выбирающим.</li>
+      <li>В вопросе: клавиши <b>1–9</b> — выбрать отвечающего, <b>+</b> / <b>−</b> — верно / неверно, <b>Пробел</b> — показать ответ, <b>Esc</b> — вернуться к табло.</li>
+      <li><b>↶</b> отменяет последнее изменение счёта, <b>⏭</b> досрочно завершает раунд.</li>
+      <li>Игра сохраняется автоматически: после перезагрузки страницы нажмите «Продолжить игру».</li>
+    </ul>
+    <button class="btn" data-close>Понятно</button>
+  </div>
+
+  <script src="js/sounds.js"></script>
+  <script src="js/loader.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
